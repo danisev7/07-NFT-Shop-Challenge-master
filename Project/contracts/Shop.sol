@@ -66,4 +66,10 @@ contract Shop is Ownable {
         ownerPool -= amount;
         paymentToken.transfer(msg.sender, amount);
     }
+
+    function withdrawEther() public onlyOwner {
+        address self = address(this); 
+        uint256 balance = self.balance;
+        payable(owner()).transfer(balance);
+    } 
 }
